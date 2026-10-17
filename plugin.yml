@@ -1,0 +1,18 @@
+name: SeasonsDiseases
+version: '1.0.0'
+main: vn.seasonsdiseases.SeasonDiseases
+api-version: '1.21'
+depend: [Seasons]
+description: He thong benh tat theo mua cho Seasons (31 benh)
+commands:
+  benh:
+    description: Xem benh dang mac va cach chua
+    aliases: [suckhoe]
+    usage: /benh [list|info <benh>]
+permissions:
+  seasondiseases.admin:
+    description: Quan tri he thong benh
+    default: op
+  seasondiseases.immune:
+    description: Mien nhiem moi benh
+    default: false

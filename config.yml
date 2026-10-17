@@ -1,0 +1,10 @@
+# So benh toi da dong thoi tren moi nguoi choi
+max-diseases: 2
+# Sau khi khoi benh nao thi mien nhiem benh do bao nhieu giay
+immunity-seconds: 180
+# Bien co (an do song, thu hoach...) chi tinh trong khoang thoi gian nay (giay)
+event-window-seconds: 120
+# Chet thi het benh
+cure-on-death: true
+# Dung khi khong doc duoc mua tu plugin Seasons (SPRING/SUMMER/AUTUMN/WINTER)
+fallback-season: SPRING

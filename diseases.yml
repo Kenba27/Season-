@@ -1,0 +1,582 @@
+# Danh sach benh. Chinh sua thoai mai roi go /benh reload.
+# trigger: RAIN COLD_TEMP HEAT_TEMP FLOWERS NIGHT_OUTSIDE CROWD WATER_SWIM SWEAT_ARMOR SUN MOSQUITO
+#          HUNGRY_LOW DEHYDRATION SWAMP HIGH_ALTITUDE SNOW_BIOME SNOW_GLARE (kiem tra moi 5 giay)
+#          EAT_RAW EAT_SPOILED EAT_BERRY BREAK_CROP (tinh theo su kien)
+# threshold: so lan kiem tra lien tiep (moi lan 5 giay) hoac so lan su kien; chance: xac suat khi dat nguong
+# param: COLD_TEMP = nhiet do duoi muc nay; HEAT_TEMP = nhiet do tren muc nay; DEHYDRATION = so giay khong uong;
+#        HIGH_ALTITUDE = do cao Y toi thieu
+# duration: giay tu khoi neu khong chua
+# cures: MATERIAL | MATERIAL~ten | MATERIAL~!ten | WATER_BOTTLE | SLEEP | SWIM | FIRE (chi can 1 cach)
+
+diseases:
+  pollen_allergy:
+    name: "Dị ứng phấn hoa"
+    season: SPRING
+    trigger: FLOWERS
+    threshold: 8
+    chance: 0.6
+    param: 0
+    duration: 240
+    description: "Phấn hoa làm bạn hắt hơi, ngứa mũi và nặng đầu."
+    symptom-message: "&e🤧 Hắt xì! Phấn hoa làm ngứa mũi quá..."
+    symptoms:
+      - "SLOWNESS:0"
+    cures:
+      - "MILK_BUCKET"
+      - "HONEY_BOTTLE~!Trà"
+    prevention: "Đừng đứng lâu giữa bãi hoa dại."
+
+  spring_flu:
+    name: "Cúm mùa xuân"
+    season: SPRING
+    trigger: RAIN
+    threshold: 20
+    chance: 0.7
+    param: 0
+    duration: 300
+    description: "Mưa xuân lất phất làm bạn sốt nhẹ, người rã rời."
+    symptom-message: "&e🤒 Người nóng ran, đầu óc quay cuồng..."
+    symptoms:
+      - "WEAKNESS:0"
+      - "SLOWNESS:0"
+    cures:
+      - "HONEY_BOTTLE~!Trà"
+      - "GOLDEN_CARROT"
+      - "SLEEP"
+    prevention: "Trú mưa, mặc đủ 3 món đồ da hoặc đứng gần lửa."
+
+  sinusitis:
+    name: "Viêm xoang"
+    season: SPRING
+    trigger: NIGHT_OUTSIDE
+    threshold: 36
+    chance: 0.5
+    param: 0
+    duration: 300
+    description: "Sương đêm làm mũi nghẹt, đầu nhức âm ỉ."
+    symptom-message: "&e😖 Mũi nghẹt cứng, đầu nhức nhối..."
+    symptoms:
+      - "MINING_FATIGUE:0"
+    cures:
+      - "MUSHROOM_STEW"
+      - "HONEY_BOTTLE~Trà nóng"
+      - "SLEEP"
+    prevention: "Đừng lang thang ngoài trời lúc khuya."
+
+  food_poisoning:
+    name: "Ngộ độc thực phẩm"
+    season: SPRING
+    trigger: EAT_RAW
+    threshold: 1
+    chance: 0.6
+    param: 0
+    duration: 240
+    description: "Ăn thịt/cá sống khiến bụng quặn đau."
+    symptom-message: "&2🤢 Bụng quặn thắt, buồn nôn quá..."
+    symptoms:
+      - "NAUSEA:0"
+      - "HUNGER:0"
+    cures:
+      - "MILK_BUCKET"
+      - "SLEEP"
+    prevention: "Nấu chín thịt, cá trước khi ăn."
+
+  chickenpox:
+    name: "Thủy đậu"
+    season: SPRING
+    trigger: CROWD
+    threshold: 24
+    chance: 0.5
+    param: 0
+    duration: 360
+    description: "Bệnh lây qua đám đông, nổi mụn nước và mệt mỏi."
+    symptom-message: "&e😣 Mụn nước ngứa ran khắp người..."
+    symptoms:
+      - "WEAKNESS:0"
+      - "HUNGER:0"
+    cures:
+      - "MILK_BUCKET"
+      - "GOLDEN_APPLE"
+      - "SLEEP"
+    prevention: "Tránh ở lâu giữa đám đông (dân làng, người chơi)."
+
+  spring_sore_throat:
+    name: "Viêm họng"
+    season: SPRING
+    trigger: COLD_TEMP
+    threshold: 12
+    chance: 0.5
+    param: 14
+    duration: 240
+    description: "Trời se lạnh làm cổ họng sưng đau."
+    symptom-message: "&e😷 Cổ họng rát bỏng..."
+    symptoms:
+      - "SLOWNESS:0"
+    cures:
+      - "HONEY_BOTTLE~!Trà"
+      - "HONEY_BOTTLE~Trà nóng"
+    prevention: "Giữ ấm khi trời se lạnh."
+
+  pink_eye:
+    name: "Đau mắt đỏ"
+    season: SPRING
+    trigger: WATER_SWIM
+    threshold: 18
+    chance: 0.4
+    param: 0
+    duration: 240
+    description: "Nước ao hồ bẩn làm mắt đỏ, cộm và khó nhìn."
+    symptom-message: "&c👁 Mắt đỏ ngầu, cộm rát..."
+    symptoms:
+      - "MINING_FATIGUE:0"
+    cures:
+      - "CARROT"
+      - "GOLDEN_CARROT"
+      - "SLEEP"
+    prevention: "Đừng ngâm mình lâu trong ao hồ."
+
+  farmer_back_pain:
+    name: "Đau lưng nhà nông"
+    season: SPRING
+    trigger: BREAK_CROP
+    threshold: 40
+    chance: 0.7
+    param: 0
+    duration: 300
+    description: "Cúi gập người thu hoạch quá nhiều làm lưng đau nhức."
+    symptom-message: "&e😫 Lưng đau như búa bổ..."
+    symptoms:
+      - "SLOWNESS:0"
+      - "MINING_FATIGUE:0"
+    cures:
+      - "SLEEP"
+      - "HONEY_BOTTLE~Trà nóng"
+    prevention: "Nghỉ ngơi giữa các đợt thu hoạch."
+
+  heatstroke:
+    name: "Say nắng"
+    season: SUMMER
+    trigger: HEAT_TEMP
+    threshold: 6
+    chance: 0.7
+    param: 42
+    duration: 300
+    description: "Nhiệt độ cơ thể quá cao làm bạn choáng váng, buồn nôn."
+    symptom-message: "&6🥵 Đầu óc choáng váng vì nóng..."
+    symptoms:
+      - "NAUSEA:0"
+      - "WEAKNESS:0"
+      - "SLOWNESS:0"
+    cures:
+      - "WATER_BOTTLE"
+      - "MELON_SLICE"
+      - "MILK_BUCKET"
+      - "HONEY_BOTTLE~Trà đá"
+    prevention: "Uống trà đá/nước, ăn dưa hấu để hạ nhiệt (dưới 42°C), trú bóng râm."
+
+  dehydration:
+    name: "Mất nước"
+    season: SUMMER
+    trigger: DEHYDRATION
+    threshold: 6
+    chance: 0.8
+    param: 420
+    duration: 300
+    description: "Ngoài nắng quá lâu mà không uống nước làm cơ thể kiệt sức."
+    symptom-message: "&6💧 Khát khô cả cổ..."
+    symptoms:
+      - "WEAKNESS:0"
+      - "SLOWNESS:0"
+    cures:
+      - "WATER_BOTTLE"
+      - "MELON_SLICE"
+      - "HONEY_BOTTLE~Trà đá"
+      - "MILK_BUCKET"
+    prevention: "Uống nước thường xuyên (ít nhất mỗi 7 phút khi ngoài nắng)."
+
+  diarrhea:
+    name: "Tiêu chảy"
+    season: SUMMER
+    trigger: EAT_SPOILED
+    threshold: 1
+    chance: 0.8
+    param: 0
+    duration: 240
+    description: "Ăn đồ ôi thiu làm bụng đau, mất sức."
+    symptom-message: "&2😖 Bụng sôi ùng ục..."
+    symptoms:
+      - "HUNGER:1"
+      - "WEAKNESS:0"
+    cures:
+      - "MILK_BUCKET"
+      - "SLEEP"
+    prevention: "Đừng ăn thịt thối, mắt nhện, khoai độc."
+
+  heat_rash:
+    name: "Rôm sảy"
+    season: SUMMER
+    trigger: SWEAT_ARMOR
+    threshold: 18
+    chance: 0.6
+    param: 0
+    duration: 300
+    description: "Mặc giáp nặng dưới nắng làm da nổi rôm, ngứa ngáy."
+    symptom-message: "&6😣 Da ngứa ran vì rôm sảy..."
+    symptoms:
+      - "SLOWNESS:0"
+    cures:
+      - "SWIM"
+      - "WATER_BOTTLE"
+    prevention: "Đừng mặc giáp nặng khi ra nắng."
+
+  sunburn:
+    name: "Cháy nắng"
+    season: SUMMER
+    trigger: SUN
+    threshold: 36
+    chance: 0.6
+    param: 0
+    duration: 300
+    description: "Phơi nắng không đội mũ làm da đỏ rát, mệt mỏi."
+    symptom-message: "&6🔥 Da rát bỏng vì cháy nắng..."
+    symptoms:
+      - "WEAKNESS:0"
+    cures:
+      - "SWIM"
+      - "MELON_SLICE"
+      - "SLEEP"
+    prevention: "Đội mũ/mũ giáp khi ra nắng."
+
+  dengue:
+    name: "Sốt xuất huyết"
+    season: SUMMER
+    trigger: MOSQUITO
+    threshold: 24
+    chance: 0.5
+    param: 0
+    duration: 420
+    description: "Muỗi đêm gần nước/đầm lầy truyền bệnh, sốt cao li bì."
+    symptom-message: "&c🦟 Sốt cao, người rã rời..."
+    symptoms:
+      - "WEAKNESS:1"
+      - "NAUSEA:0"
+      - "SLOWNESS:0"
+    cures:
+      - "GOLDEN_APPLE"
+      - "ENCHANTED_GOLDEN_APPLE"
+    prevention: "Tránh ở gần ao hồ, đầm lầy vào ban đêm."
+
+  mouth_sores:
+    name: "Nhiệt miệng"
+    season: SUMMER
+    trigger: HUNGRY_LOW
+    threshold: 24
+    chance: 0.6
+    param: 0
+    duration: 240
+    description: "Thiếu dinh dưỡng và nóng trong làm miệng lở loét."
+    symptom-message: "&6😖 Miệng đau rát, ăn không nổi..."
+    symptoms:
+      - "HUNGER:0"
+    cures:
+      - "MELON_SLICE"
+      - "SWEET_BERRIES"
+      - "MILK_BUCKET"
+    prevention: "Ăn uống đủ chất, đừng để đói lả."
+
+  swim_cramp:
+    name: "Chuột rút"
+    season: SUMMER
+    trigger: WATER_SWIM
+    threshold: 36
+    chance: 0.6
+    param: 0
+    duration: 180
+    description: "Bơi quá lâu làm chân co rút đau điếng."
+    symptom-message: "&b😣 Chân co rút, đau quá!"
+    symptoms:
+      - "SLOWNESS:1"
+    cures:
+      - "MELON_SLICE"
+      - "HONEY_BOTTLE~Trà đá"
+      - "SLEEP"
+    prevention: "Đừng bơi quá lâu một lúc."
+
+  autumn_flu:
+    name: "Cảm cúm mùa thu"
+    season: AUTUMN
+    trigger: COLD_TEMP
+    threshold: 16
+    chance: 0.6
+    param: 12
+    duration: 300
+    description: "Gió thu se lạnh làm bạn sổ mũi, người nhức mỏi."
+    symptom-message: "&6🤧 Sụt sịt, nhức mỏi cả người..."
+    symptoms:
+      - "WEAKNESS:0"
+      - "SLOWNESS:0"
+    cures:
+      - "HONEY_BOTTLE~!Trà"
+      - "HONEY_BOTTLE~Trà nóng"
+      - "GOLDEN_APPLE"
+    prevention: "Mặc ấm, đừng đứng gió lâu."
+
+  bronchitis:
+    name: "Viêm phế quản"
+    season: AUTUMN
+    trigger: NIGHT_OUTSIDE
+    threshold: 30
+    chance: 0.5
+    param: 0
+    duration: 360
+    description: "Sương lạnh ban đêm làm bạn ho dai dẳng, tức ngực."
+    symptom-message: "&6😷 Ho khù khụ, tức ngực..."
+    symptoms:
+      - "SLOWNESS:0"
+      - "MINING_FATIGUE:0"
+    cures:
+      - "HONEY_BOTTLE~Trà nóng"
+      - "MUSHROOM_STEW"
+      - "BEETROOT_SOUP"
+    prevention: "Đừng ở ngoài trời khuya vào mùa thu."
+
+  harvest_allergy:
+    name: "Dị ứng bụi lúa"
+    season: AUTUMN
+    trigger: BREAK_CROP
+    threshold: 30
+    chance: 0.7
+    param: 0
+    duration: 240
+    description: "Bụi rơm rạ khi gặt hái làm ngứa mắt, ngứa họng."
+    symptom-message: "&6🤧 Bụi lúa làm ngứa mắt, ngứa mũi..."
+    symptoms:
+      - "WEAKNESS:0"
+      - "HUNGER:0"
+    cures:
+      - "MILK_BUCKET"
+      - "WATER_BOTTLE"
+    prevention: "Nghỉ giữa các đợt gặt hái, đừng gặt liên tục."
+
+  joint_pain:
+    name: "Đau khớp"
+    season: AUTUMN
+    trigger: RAIN
+    threshold: 30
+    chance: 0.6
+    param: 0
+    duration: 360
+    description: "Ẩm ướt kéo dài làm khớp xương đau nhức."
+    symptom-message: "&6😣 Khớp xương đau buốt..."
+    symptoms:
+      - "MINING_FATIGUE:0"
+      - "SLOWNESS:0"
+    cures:
+      - "HONEY_BOTTLE~Trà nóng"
+      - "SLEEP"
+      - "BEETROOT_SOUP"
+    prevention: "Trú mưa, đừng để người ẩm ướt lâu."
+
+  viral_fever:
+    name: "Sốt siêu vi"
+    season: AUTUMN
+    trigger: CROWD
+    threshold: 24
+    chance: 0.5
+    param: 0
+    duration: 420
+    description: "Virus lây trong đám đông gây sốt, buồn nôn."
+    symptom-message: "&c🤒 Sốt li bì, ớn lạnh..."
+    symptoms:
+      - "WEAKNESS:1"
+      - "NAUSEA:0"
+    cures:
+      - "GOLDEN_APPLE"
+      - "MILK_BUCKET"
+    prevention: "Tránh ở lâu giữa đám đông."
+
+  skin_fungus:
+    name: "Nấm da"
+    season: AUTUMN
+    trigger: SWAMP
+    threshold: 24
+    chance: 0.6
+    param: 0
+    duration: 300
+    description: "Đầm lầy ẩm mốc làm da ngứa và nổi nấm."
+    symptom-message: "&2😣 Da ngứa rát vì nấm..."
+    symptoms:
+      - "HUNGER:0"
+    cures:
+      - "MILK_BUCKET"
+      - "SLEEP"
+    prevention: "Hạn chế ở lâu trong vùng đầm lầy ẩm ướt."
+
+  indigestion:
+    name: "Đầy bụng khó tiêu"
+    season: AUTUMN
+    trigger: EAT_BERRY
+    threshold: 10
+    chance: 0.8
+    param: 0
+    duration: 180
+    description: "Ăn quá nhiều quả mọng làm bụng chướng, buồn nôn."
+    symptom-message: "&6😖 Bụng chướng căng..."
+    symptoms:
+      - "NAUSEA:0"
+      - "HUNGER:0"
+    cures:
+      - "MILK_BUCKET"
+      - "WATER_BOTTLE"
+      - "SLEEP"
+    prevention: "Đừng ăn quá nhiều quả mọng liên tục."
+
+  common_cold:
+    name: "Cảm lạnh"
+    season: WINTER
+    trigger: COLD_TEMP
+    threshold: 12
+    chance: 0.7
+    param: 5
+    duration: 300
+    description: "Trời rét làm bạn run, sổ mũi, người yếu."
+    symptom-message: "&b🤧 Hắt xì! Mũi sụt sịt, người rét run..."
+    symptoms:
+      - "SLOWNESS:0"
+      - "WEAKNESS:0"
+    cures:
+      - "MUSHROOM_STEW"
+      - "RABBIT_STEW"
+      - "BEETROOT_SOUP"
+      - "HONEY_BOTTLE~Trà nóng"
+      - "GOLDEN_APPLE"
+    prevention: "Mặc đủ 3 món đồ da hoặc đứng gần lửa."
+
+  pneumonia:
+    name: "Viêm phổi"
+    season: WINTER
+    trigger: COLD_TEMP
+    threshold: 24
+    chance: 0.5
+    param: -5
+    duration: 480
+    description: "Lạnh giá kéo dài làm phổi viêm, thở nặng nhọc."
+    symptom-message: "&9😷 Ho dữ dội, thở nặng nhọc..."
+    symptoms:
+      - "SLOWNESS:1"
+      - "WEAKNESS:1"
+      - "MINING_FATIGUE:0"
+    cures:
+      - "GOLDEN_APPLE"
+      - "ENCHANTED_GOLDEN_APPLE"
+    prevention: "Đừng ở ngoài trời giá rét lâu, hãy sưởi ấm."
+
+  frostbite:
+    name: "Tê cóng"
+    season: WINTER
+    trigger: COLD_TEMP
+    threshold: 16
+    chance: 0.6
+    param: -12
+    duration: 300
+    description: "Rét cắt da làm tay chân tê dại, đào xới khó khăn."
+    symptom-message: "&9🥶 Tay chân tê cứng..."
+    symptoms:
+      - "MINING_FATIGUE:1"
+      - "SLOWNESS:1"
+    cures:
+      - "FIRE"
+      - "HONEY_BOTTLE~Trà nóng"
+    prevention: "Tìm lửa sưởi khi trời rét đậm."
+
+  hypothermia:
+    name: "Hạ thân nhiệt"
+    season: WINTER
+    trigger: WATER_SWIM
+    threshold: 6
+    chance: 0.8
+    param: 0
+    duration: 300
+    description: "Ngâm mình trong nước lạnh làm thân nhiệt tụt nhanh."
+    symptom-message: "&1🥶 Run bần bật, môi tím tái..."
+    symptoms:
+      - "SLOWNESS:2"
+      - "WEAKNESS:1"
+      - "MINING_FATIGUE:0"
+    cures:
+      - "FIRE"
+      - "HONEY_BOTTLE~Trà nóng"
+      - "GOLDEN_APPLE"
+    prevention: "Đừng xuống nước vào mùa đông."
+
+  winter_sore_throat:
+    name: "Viêm họng mùa đông"
+    season: WINTER
+    trigger: HIGH_ALTITUDE
+    threshold: 24
+    chance: 0.5
+    param: 100
+    duration: 240
+    description: "Gió buốt trên cao làm cổ họng khô rát."
+    symptom-message: "&b😷 Gió buốt làm cổ họng rát..."
+    symptoms:
+      - "SLOWNESS:0"
+    cures:
+      - "HONEY_BOTTLE~!Trà"
+      - "HONEY_BOTTLE~Trà nóng"
+    prevention: "Hạn chế đứng trên đỉnh núi cao lộng gió."
+
+  chapped_skin:
+    name: "Nứt nẻ da"
+    season: WINTER
+    trigger: SNOW_BIOME
+    threshold: 36
+    chance: 0.6
+    param: 0
+    duration: 300
+    description: "Khí hậu băng giá làm da khô, nứt nẻ đau rát."
+    symptom-message: "&b😣 Da nứt nẻ đau rát..."
+    symptoms:
+      - "MINING_FATIGUE:0"
+    cures:
+      - "MILK_BUCKET"
+      - "HONEY_BOTTLE~!Trà"
+    prevention: "Đừng ở lâu trong vùng tuyết."
+
+  winter_flu:
+    name: "Cúm mùa đông"
+    season: WINTER
+    trigger: CROWD
+    threshold: 24
+    chance: 0.5
+    param: 0
+    duration: 420
+    description: "Virus cúm lây trong đám đông, sốt và rã rời."
+    symptom-message: "&b🤒 Sốt ớn lạnh, người rã rời..."
+    symptoms:
+      - "WEAKNESS:1"
+      - "SLOWNESS:0"
+      - "NAUSEA:0"
+    cures:
+      - "GOLDEN_APPLE"
+      - "HONEY_BOTTLE~Trà nóng"
+      - "SLEEP"
+    prevention: "Tránh ở lâu giữa đám đông."
+
+  snow_blindness:
+    name: "Mù tuyết"
+    season: WINTER
+    trigger: SNOW_GLARE
+    threshold: 24
+    chance: 0.6
+    param: 0
+    duration: 150
+    description: "Ánh nắng phản chiếu trên tuyết làm mắt lóa, tối sầm."
+    symptom-message: "&b👁 Mắt lóa, tối sầm lại..."
+    symptoms:
+      - "DARKNESS:0"
+    cures:
+      - "SLEEP"
+      - "CARROT"
+      - "GOLDEN_CARROT"
+    prevention: "Đừng nhìn tuyết dưới nắng quá lâu."
